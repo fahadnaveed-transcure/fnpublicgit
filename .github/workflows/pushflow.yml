@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: display msg
-      run: echo "this will prrint msg on push"
+      run: echo "this will prrint msg on push" && echo "::set-output name=foo::$BAR"  && echo "$BAR"  # add this line
