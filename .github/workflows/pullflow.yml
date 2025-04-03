@@ -1,0 +1,16 @@
+name: mypullflow
+
+on:
+  
+  pull_request:
+    
+
+jobs:
+  buildpullflow:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: testpull
+      run: echo "This will run when pull request is open"

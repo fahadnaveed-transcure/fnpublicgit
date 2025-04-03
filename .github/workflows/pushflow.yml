@@ -1,0 +1,16 @@
+name: mypushflow
+
+on:
+  push:
+    branches: [ "main" ]
+  
+
+jobs:
+  buildpushflow:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: display msg
+      run: echo "this will prrint msg on push"
