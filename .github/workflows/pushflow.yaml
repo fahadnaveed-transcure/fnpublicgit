@@ -9,10 +9,11 @@ on:
 jobs: 
   job1: 
     runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-      uses: actions/checkout@v4.2.2
 
-      -name: Print hello world
-       run: echo "hello world: This trigger will run after push to main branch"
+    steps: 
+        - name: checkout
+        - uses: actions/checkout@v4.2.2
+
+        - name: Print hello world
+        - run: echo "hello world: This trigger will run after push to main branch"
 
