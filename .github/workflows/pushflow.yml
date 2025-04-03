@@ -1,18 +1,16 @@
-    name: first Workflow
+name: mypushflow
 
-    on: 
-        push: 
-            branches: 
-             - main
+on:
+  push:
+    branches: [ "main" ]
+  
 
+jobs:
+  buildpushflow:
 
-    jobs: 
-            pushjob1: 
-                runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-                steps: 
-                  - name: checkout11
-                  - uses: actions/checkout@v4.2
-
-                  - name: Print hello world
-                  - run: echo "This trigger will run after push to main branch"
+    steps:
+    - uses: actions/checkout@v4
+    - name: display msg
+      run: echo "this will prrint msg on push"
