@@ -13,5 +13,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: display msg
-      run: echo "this will prrint msg on push" &&  echo "{name}={value}" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
+      run: echo "this will prrint msg on push" &&  echo "name={value}" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
       
