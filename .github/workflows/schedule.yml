@@ -1,16 +1,17 @@
-name: Schedule workflow
+name: scheduleflow
 
-on: 
-   schedule: 
-    -cron:
-      - '*/5 * * * *'
+on:
+  schedule:
+     - cron: '*/5 * * * *'
+    
+  
 
-jobs: 
-  schedule-job: 
+jobs:
+  myschedule:
+
     runs-on: ubuntu-latest
-    steps: 
-      - name: Print scheduler trrigger
-      - run: echo " this flow wuns every 5  minutes"
 
-
-
+    steps:
+    - uses: actions/checkout@v4
+    - name: testschedule
+      run: echo "this is scheduled every 5 minutes"
