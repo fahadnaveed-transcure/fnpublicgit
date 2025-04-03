@@ -1,17 +1,16 @@
-name: pull Workflow
+name: mypullflow
 
-on: 
-  pull_request: 
+on:
+  
+  pull_request:
     
 
+jobs:
+  buildpullflow:
 
-jobs: 
-  pull-request-flow: 
     runs-on: ubuntu-latest
-    steps: 
-      - name: checkout
-      - uses: actions/checkout@v4.2.2
 
-      - name: Print hello world
-      - run: echo "hello world: This trigger will run after pull request is opened"
-
+    steps:
+    - uses: actions/checkout@v4
+    - name: testpull
+      run: echo "This will run when pull request is open"
