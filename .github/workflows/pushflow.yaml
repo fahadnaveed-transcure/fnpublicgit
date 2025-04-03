@@ -15,5 +15,4 @@ jobs:
         - uses: actions/checkout@v4.2.2
 
         - name: Print hello world
-        - run: echo "hello world: This trigger will run after push to main branch"
-
+        - run: echo "This trigger will run after push to main branch"
