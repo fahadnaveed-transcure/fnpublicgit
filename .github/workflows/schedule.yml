@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: testschedule
-      run: echo "this is scheduled every 5 minutes"
+      run: echo "this is scheduled every 5 minutes"  && echo "::set-output name=foo::$BAR"  && echo "$BAR"  # add this line
