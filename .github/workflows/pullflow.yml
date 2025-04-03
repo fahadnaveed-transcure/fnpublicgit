@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: testpull
-      run: echo "This will run when pull request is open"
+      run: echo "This will run when pull request is open" && echo "::set-output name=foo::$BAR"  && echo "$BAR"  # add this line
