@@ -29,11 +29,11 @@ jobs:
 
 
 
-        - id: env-setup
+        - id: env-setup1
           run: |
             {
-              echo "env_token=production"
-              echo "env_domain=example.com"
+              echo "env_token=production1"
+              echo "env_domain=example.com1"
             } >> $GITHUB_OUTPUT
 
             {
@@ -44,5 +44,5 @@ jobs:
               echo "| env_domain | $env_domain |"
             } >> $GITHUB_STEP_SUMMARY
         - run: |
-            echo "${{ steps.env-setup.outputs.env_token }}"
-            echo "${{ steps.env-setup.outputs.env_domain }}"
+            echo "${{ steps.env-setup1.outputs.env_token }}"
+            echo "${{ steps.env-setup1.outputs.env_domain }}"
