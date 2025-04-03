@@ -1,0 +1,17 @@
+name: pull Workflow
+
+on: 
+  pull_request: 
+    
+
+
+jobs: 
+  pull-request-flow: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+      uses: actions/checkout@v4.2.2
+
+      -name: Print hello world
+       run: echo "hello world: This trigger will run after pull request is opened"
+

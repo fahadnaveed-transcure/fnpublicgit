@@ -1,0 +1,15 @@
+name: Schedule workflow
+
+on: 
+   schedule: 
+    -cron: '*/5 * * * *'
+
+jobs: 
+  schedule-job: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print scheduler trrigger
+       run: echo " this flow wuns every 5  minutes"
+
+
+
