@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: display msg
-      run: echo "this will prrint msg on push" &&  echo "name=value" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
+      run: echo "this will prrint msg on push" #&&  echo "name=value" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
       
     - id: env-setup
       run: |
@@ -29,8 +29,8 @@ jobs:
 
 
 
-        - id: env-setup1
-          run: |
+    - id: env-setup1
+      run: |
             {
               echo "env_token=production1"
               echo "env_domain=example.com1"
@@ -43,6 +43,6 @@ jobs:
               echo "| env_token  | $env_token  |"
               echo "| env_domain | $env_domain |"
             } >> $GITHUB_STEP_SUMMARY
-        - run: |
+    - run: |
             echo "${{ steps.env-setup1.outputs.env_token }}"
             echo "${{ steps.env-setup1.outputs.env_domain }}"
