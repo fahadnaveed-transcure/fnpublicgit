@@ -15,3 +15,12 @@ jobs:
     - name: display msg
       run: echo "this will prrint msg on push" &&  echo "name=value" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
       
+    - id: env-setup
+      run: |
+        {
+          "env_token=production"
+          "env_domain=example.com"
+        } >> $GITHUB_OUTPUT
+    - run: |
+        echo "${{ steps.env-setup.outputs.env_token }}"
+        echo "${{ steps.env-setup.outputs.env_domain }}"
