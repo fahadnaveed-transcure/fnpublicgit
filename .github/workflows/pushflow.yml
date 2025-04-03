@@ -18,8 +18,8 @@ jobs:
     - id: env-setup
       run: |
         {
-          "env_token=production"
-          "env_domain=example.com"
+         echo "env_token=production"
+          echo "env_domain=example.com"
         } >> $GITHUB_OUTPUT
     - run: |
         echo "${{ steps.env-setup.outputs.env_token }}"
