@@ -40,8 +40,8 @@ jobs:
               echo "### Workflow variables"
               echo "| Variable   | Value       |"
               echo "| ---------- | ----------- |"
-              echo "| env_token  | $env_token  |"
-              echo "| env_domain | $env_domain |"
+              echo "| env_token  | echo $env_token  |"
+              echo "| env_domain | echo $env_domain |"
             } >> $GITHUB_STEP_SUMMARY
     - run: |
             echo "${{ steps.env-setup1.outputs.env_token }}"
