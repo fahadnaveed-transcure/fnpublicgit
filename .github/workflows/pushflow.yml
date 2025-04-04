@@ -42,7 +42,7 @@ jobs:
               echo "| Variable   | Value       |" >> $GITHUB_STEP_SUMMARY
               echo "| ---------- | ----------- |" >> $GITHUB_STEP_SUMMARY
               echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |' >> $GITHUB_STEP_SUMMARY
-              echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
+              cat '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
                
             } #>> $GITHUB_STEP_SUMMARY
     - run: |
