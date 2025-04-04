@@ -3,6 +3,7 @@ name: mypullflow
 on:
   
   pull_request:
+    types: [opened, reopened]
     
 
 jobs:
@@ -15,3 +16,18 @@ jobs:
     - name: testpull
       run: echo "This will run when pull request is open"
       #test
+
+    - id: env-setup1
+      run: |
+            {
+              echo "env_token1=production1"
+              echo "env_domain1=example.com1"
+            } >> $GITHUB_OUTPUT
+
+    - run: |
+              
+              echo '### Workflow variables' >> $GITHUB_STEP_SUMMARY
+              echo '| Variable   | Value       |' >> $GITHUB_STEP_SUMMARY
+              echo '| ---------- | ----------- |' >> $GITHUB_STEP_SUMMARY
+              echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |' >> $GITHUB_STEP_SUMMARY
+              echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
