@@ -15,15 +15,15 @@ jobs:
     - name: display msg
       run: echo "this will prrint msg on push" #&&  echo "name=value" >> $GITHUB_OUTPUT && echo $GITHUB_OUTPUT
       
-    - id: env-setup
-      run: |
-        {
-         echo "env_token=production"
-          echo "env_domain=example.com"
-        } >> $GITHUB_OUTPUT
-    - run: |
-        echo "${{ steps.env-setup.outputs.env_token }}"
-        echo "${{ steps.env-setup.outputs.env_domain }}"
+    #- id: env-setup
+      #run: |
+        #{
+         #echo "env_token=production"
+          #echo "env_domain=example.com"
+        #} >> $GITHUB_OUTPUT
+    #- run: |
+        #echo "${{ steps.env-setup.outputs.env_token }}"
+        #echo "${{ steps.env-setup.outputs.env_domain }}"
 
 
 
@@ -42,7 +42,7 @@ jobs:
               echo "| ---------- | ----------- |"
               echo "| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |"
               echo "| env_domain |  $env_domain1 |"
-              echo $env_domain1 
+              echo "$env_domain1 hi" 
             } >> $GITHUB_STEP_SUMMARY
     - run: |
             echo "${{ steps.env-setup1.outputs.env_token1 }} checking"
