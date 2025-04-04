@@ -37,17 +37,16 @@ jobs:
             } >> $GITHUB_OUTPUT
 
             {
-              #echo "| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |"
-              #echo " "
-              echo "### Workflow variables"
-              echo "| Variable   | Value       |"
-              echo "| ---------- | ----------- |"
-              echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |'
-              echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|'
-              echo "${{ steps.env-setup1.outputs.env_domain1 }} hi" 
-            } >> $GITHUB_STEP_SUMMARY
+              
+              echo "### Workflow variables" >> $GITHUB_STEP_SUMMARY
+              echo "| Variable   | Value       |" >> $GITHUB_STEP_SUMMARY
+              echo "| ---------- | ----------- |" >> $GITHUB_STEP_SUMMARY
+              echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |' >> $GITHUB_STEP_SUMMARY
+              echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
+               
+            } #>> $GITHUB_STEP_SUMMARY
     - run: |
             echo "${{ steps.env-setup1.outputs.env_token1 }} checking"
             echo "${{ steps.env-setup1.outputs.env_domain1 }}"
-            echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
-            echo "| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |" >> $GITHUB_STEP_SUMMARY
+            #echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
+            #echo "| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |" >> $GITHUB_STEP_SUMMARY
