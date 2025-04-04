@@ -36,7 +36,7 @@ jobs:
               echo "env_domain1=example.com1"
             } >> $GITHUB_OUTPUT
 
-            {
+    - run: |
               
               echo '### Workflow variables' >> $GITHUB_STEP_SUMMARY
               echo '| Variable   | Value       |' >> $GITHUB_STEP_SUMMARY
@@ -44,7 +44,7 @@ jobs:
               echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |' >> $GITHUB_STEP_SUMMARY
               echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
                
-            } #>> $GITHUB_STEP_SUMMARY
+            #} #>> $GITHUB_STEP_SUMMARY
     - run: |
             echo "${{ steps.env-setup1.outputs.env_token1 }} checking"
             echo "${{ steps.env-setup1.outputs.env_domain1 }}"
