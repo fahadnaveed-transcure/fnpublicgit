@@ -40,9 +40,10 @@ jobs:
       with:
         message: |
           Test successful1 !
-        reactions: rocket           
+        #reactions: rocket           
 
 
-        message: |
-          _(execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_
+        #message: |
+          _(execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_  |
         comment_tag: execution  
+
