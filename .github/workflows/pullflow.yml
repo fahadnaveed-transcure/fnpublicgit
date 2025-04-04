@@ -39,5 +39,5 @@ jobs:
       uses: thollander/actions-comment-pull-request@v2
       with:
         message: |
-          Test successful !
+          Test successful1 !
         reactions: rocket           
