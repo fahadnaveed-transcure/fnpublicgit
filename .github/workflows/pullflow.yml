@@ -10,6 +10,7 @@ jobs:
   buildpullflow:
 
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
     - uses: actions/checkout@v4
@@ -30,3 +31,10 @@ jobs:
               echo '| ---------- | ----------- |' >> $GITHUB_STEP_SUMMARY
               echo '| env_token  |  ${{ steps.env-setup1.outputs.env_token1 }}  |' >> $GITHUB_STEP_SUMMARY
               echo '| env_domain |  ${{ steps.env-setup1.outputs.env_domain1 }}|' >> $GITHUB_STEP_SUMMARY
+
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        message: |
+          Test successful !
+        reactions: rocket       
