@@ -30,6 +30,5 @@ jobs:
           push: true
           tags: |
             fahdnaveed/fahdnaveedpvt:mylira
-            #${{ secrets.DOCKERHUB_USERNAME }}:latest
             fahdnaveed/fahdnaveedpvt:mylira-${{ github.sha }}
 
