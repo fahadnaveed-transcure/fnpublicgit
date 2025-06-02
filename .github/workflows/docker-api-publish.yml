@@ -29,7 +29,7 @@ jobs:
           file: docker/Dockerfile-api
           push: true
           tags: |
-            fahdnaveed/fahdnaveedpvt:latest
+            fahdnaveed/fahdnaveedpvt:mylira
             #${{ secrets.DOCKERHUB_USERNAME }}:latest
-            fahdnaveed/fahdnaveedpvt:${{ github.sha }}
+            fahdnaveed/fahdnaveedpvt:mylira-${{ github.sha }}
 
