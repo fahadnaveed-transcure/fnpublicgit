@@ -3,7 +3,7 @@ IMAGE_NAME = fahdnaveed/fahdnaveedpvt
 #DOCKERHUB_USERNAME=fahdnaveed
 # Define the tag for Docker
 TAG = mylera
-
+.PHONY: all build tag push login clean release-api build-api push-api
 all: release-api
 
 release-api: build-api push-api
