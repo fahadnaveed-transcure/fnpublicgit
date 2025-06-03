@@ -1,7 +1,6 @@
 # Define the image name for Docker
 IMAGE_NAME = fahdnaveed/fahdnaveedpvt
-DOCKERHUB_USERNAME1=fahdnaveed
-DOCKERHUB_TOKEN1=dckr_pat_MuZDNT93pU9b-FoMpVYHqmS5td4
+
 # Define the tag for Docker
 TAG = mylera
 .PHONY: all build tag push login clean release-api build-api push-api
@@ -15,5 +14,5 @@ build-api:
 	
 # This is a Makefile target named 'push'
 push-api: 
-	docker login -u $(DOCKERHUB_USERNAME1) -p $(DOCKERHUB_TOKEN1)
+	docker login -u $${DOCKERHUB_USERNAME} -p $${DOCKERHUB_TOKEN}
 	docker push $(IMAGE_NAME):$(TAG)-api
