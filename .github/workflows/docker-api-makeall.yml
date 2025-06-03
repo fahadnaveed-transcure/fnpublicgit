@@ -1,0 +1,17 @@
+name: Build and Push Docker Image using MakeAll
+
+on:
+  #push:
+    #branches: [main]  # or your deployment branch
+  workflow_dispatch:
+
+jobs:
+  build-and-push-makeall:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Run make all
+          run: make all
+          env:
+            DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+            DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
