@@ -16,6 +16,6 @@ build-api:
 # This is a Makefile target named 'push'
 push-api: 
   @echo "Logging in to Push Docker images..."	
-  docker login -u $(DOCKERHUB_USERNAME) -p $${DOCKERHUB_TOKEN}
+  docker login -u $${DOCKERHUB_USERNAME} -p $${DOCKERHUB_TOKEN}
   @echo "Pushing Docker images..."
 	docker push $(IMAGE_NAME):$(TAG)-api
