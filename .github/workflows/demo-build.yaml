@@ -1,0 +1,37 @@
+name: Demo Publish API
+
+on:
+  #push:
+    #branches: [main]  # or your deployment branch
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Build mode: demo (retag) or final (build + push)'
+        required: true
+        default: 'demo'
+        type: choice
+        options:
+          - demo
+          - final
+
+jobs:
+  build-and-push-makeall:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: LoginDocker
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+#        - name: Run make all
+#          run: make all
+        - name: Retag demo release
+        if: ${{ github.event.inputs.mode == 'demo' }}
+        run: make demo
+          
+        - name: Final release
+        if: ${{ github.event.inputs.mode == 'final' }}
+        run: make all
