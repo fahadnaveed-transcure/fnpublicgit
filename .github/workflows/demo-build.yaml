@@ -29,9 +29,9 @@ jobs:
 #        - name: Run make all
 #          run: make all
         - name: Retag demo release
-        if: ${{ github.event.inputs.mode == 'demo' }}
-        run: make demo
+          if: ${{ github.event.inputs.mode == 'demo' }}
+          run: make demo
           
         - name: Final release
-        if: ${{ github.event.inputs.mode == 'final' }}
-        run: make all
+          if: ${{ github.event.inputs.mode == 'final' }}
+          run: make all
