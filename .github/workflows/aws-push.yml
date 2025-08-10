@@ -54,19 +54,19 @@ jobs:
       run: |
         echo "🧪 Testing the built image..."
         # For Alpine image
-        docker run --rm ${{ env.ECR_REPOSITORY }}:${{ github.sha }} || true
+        docker run --rm ${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }} || true
         # For Node.js image (uncomment if using Node.js)
-        # timeout 10s docker run --rm -p 3000:3000 ${{ env.ECR_REPOSITORY }}:${{ github.sha }} || true
+        # timeout 10s docker run --rm -p 3000:3000 ${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }} || true
 
     - name: 🏷️ Tag Docker image
       run: |
-        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }}
+        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
 
     - name: 🚀 Push Docker image to ECR
       run: |
         echo "🚀 Pushing image to ECR..."
-        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha[0:7] }}
         docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
 
     - name: 📋 Image Details
