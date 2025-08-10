@@ -9,7 +9,7 @@ on:
 
 env:
   AWS_REGION: us-east-1                    # Change to your region
-  ECR_REPOSITORY: 903578657742.dkr.ecr.us-east-1.amazonaws.com/mylera/my-app             # Change to your ECR repo name
+  ECR_REPOSITORY: mylera/my-app             # Change to your ECR repo name
 
 jobs:
   build-and-push:
