@@ -1,0 +1,82 @@
+name: Build and Push to ECR
+
+on:
+  #push:
+    #branches: [ main, develop ]
+  #pull_request:
+    #branches: [ main ]
+  workflow_dispatch:  # Manual trigger
+
+env:
+  AWS_REGION: us-east-1                    # Change to your region
+  ECR_REPOSITORY: 903578657742.dkr.ecr.us-east-1.amazonaws.com/mylera/my-app             # Change to your ECR repo name
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read    # Required to checkout code
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔧 Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: 🔐 Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: 🏷️ Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: 🔨 Build Docker image
+      run: |
+        docker build -t ${{ env.ECR_REPOSITORY }}:${{ github.sha }} .
+        docker images
+
+    - name: 🧪 Test Docker image
+      run: |
+        echo "🧪 Testing the built image..."
+        # For Alpine image
+        docker run --rm ${{ env.ECR_REPOSITORY }}:${{ github.sha }} || true
+        # For Node.js image (uncomment if using Node.js)
+        # timeout 10s docker run --rm -p 3000:3000 ${{ env.ECR_REPOSITORY }}:${{ github.sha }} || true
+
+    - name: 🏷️ Tag Docker image
+      run: |
+        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+        docker tag ${{ env.ECR_REPOSITORY }}:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+
+    - name: 🚀 Push Docker image to ECR
+      run: |
+        echo "🚀 Pushing image to ECR..."
+        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+        docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+
+    - name: 📋 Image Details
+      run: |
+        echo "✅ Image pushed successfully!"
+        echo "📦 Repository: ${{ env.ECR_REPOSITORY }}"
+        echo "🏷️ Tags: latest, ${{ github.sha }}"
+        echo "📍 Registry: ${{ steps.login-ecr.outputs.registry }}"
+        echo "🔗 Full URI: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest"
+
+    - name: 📊 Show image size
+      run: |
+        docker images ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
