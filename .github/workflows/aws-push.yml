@@ -38,16 +38,16 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=sha,prefix={{branch}}-
-          type=raw,value=latest,enable={{is_default_branch}}
+        images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:test
+        #tags: |
+          #type=ref,event=branch
+          #type=ref,event=pr
+          #type=sha,prefix={{branch}}-
+          #type=raw,value=latest,enable={{is_default_branch}}
 
     - name: 🔨 Build Docker image
       run: |
-        docker build -t ${{ env.ECR_REPOSITORY }}:${{ github.sha }} .
+        docker build -t ${{ env.ECR_REPOSITORY }}:${{ github.sha[0-7] }} .
         docker images
 
     - name: 🧪 Test Docker image
